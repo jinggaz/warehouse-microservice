@@ -34,44 +34,48 @@ class InventoryServiceTest {
 	@InjectMocks
 	private InventoryService inventoryService;
 
+	private Inventory inventory;
+	private Product product;
 	private List<Inventory> inventories;
-	private InventoryDto inventoryDto;
 
 	@Test
 	void getAllInventoryHappyPathTest() {
 
 		prepareTestData();
+
 		when(inventoryRepository.findAll()).thenReturn(inventories);
-		when(mapstructMapper.inventoryToInventoryDto(any())).thenReturn(inventoryDto);
-		
+		when(mapstructMapper.inventoryToInventoryDto(any())).thenAnswer(invocation -> {
+			Inventory inventory = invocation.getArgument(0);
+			InventoryDto inventoryDto = new InventoryDto();
+			inventoryDto.setCurrentInventory(inventory.getCurrentInventory());
+			return inventoryDto;
+		});
+
 		final List<InventoryDto> result = inventoryService.getAllInventory();
-		
+
 		assertThat(1, is(result.size()));
 		assertThat(100, is(result.get(0).getCurrentInventory()));
-
 	}
 
 	private void prepareTestData() {
 
 		inventories = new ArrayList<>();
 
-		Inventory inventory = new Inventory();
+		inventory = new Inventory();
 		Manufacturer manufacturer = new Manufacturer();
 		manufacturer.setManufacturerName("Apple");
 		inventory.setManufacturer(manufacturer);
 
-		Product product = new Product();
+		product = new Product();
 		product.setProductName("Macbook Pro 16");
 		product.setDescription("Apple MacBook Pro 16 inch laptop computer");
 		product.setManufacturer(manufacturer);
 		Set<Product> products = Collections.singleton(product);
 		manufacturer.setProducts(products);
 		inventory.setProduct(product);
+		inventory.setCurrentInventory(100);
 
 		inventories.add(inventory);
-		
-		inventoryDto = new InventoryDto();
-		inventoryDto.setCurrentInventory(100);
 	}
 
 }

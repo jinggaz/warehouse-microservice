@@ -31,7 +31,7 @@ public class InventoryService {
 		return result.stream().map(it -> mapstructMapper.inventoryToInventoryDto(it)).toList();
 	}
 
-	public void createOrUpdateInventoryRecord(Inventory inventory, ReceiveDto recieveDto, Product product) {
+	public Inventory createOrUpdateInventoryRecord(Inventory inventory, ReceiveDto recieveDto, Product product) {
 
 		if (null != inventory) {
 			inventory.setCurrentInventory(inventory.getCurrentInventory() + recieveDto.getRecievedQuantity());
@@ -42,6 +42,8 @@ public class InventoryService {
 			inventory.setProduct(product);
 			inventory.setCurrentInventory(recieveDto.getRecievedQuantity());
 		}
+
+		return inventory;
 	}
 
 	public Inventory findByManufacturerIdAndProductId(Integer manufacturerId, Integer productId) {

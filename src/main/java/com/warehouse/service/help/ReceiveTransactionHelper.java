@@ -41,7 +41,7 @@ public class ReceiveTransactionHelper {
 
 		Inventory inventory = inventoryService.findByManufacturerIdAndProductId(
 				recieveDto.getManufacturer().getManufacturerId(), recieveDto.getProduct().getProductId());
-		inventoryService.createOrUpdateInventoryRecord(inventory, recieveDto, product);
+		inventory = inventoryService.createOrUpdateInventoryRecord(inventory, recieveDto, product);
 
 		final Receive receive = new Receive(product, recieveDto);
 		recieveRepository.save(receive);
