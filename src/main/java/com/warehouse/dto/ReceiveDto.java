@@ -22,8 +22,8 @@ public class ReceiveDto {
 	private ProductDto product;
 
 	@NotNull(message = "The recievedQuantity is required.")
-	@JsonProperty("recievedQuantity")
-	private Integer recievedQuantity;
+	@JsonProperty("receivedQuantity")
+	private Integer receivedQuantity;
 
 	@NotNull(message = "The recievedQuantity is required.")
 	@JsonProperty("productDetails")
@@ -48,12 +48,12 @@ public class ReceiveDto {
 		this.product = product;
 	}
 
-	public Integer getRecievedQuantity() {
-		return recievedQuantity;
+	public Integer getReceivedQuantity() {
+		return receivedQuantity;
 	}
 
-	public void setRecievedQuantity(Integer recievedQuantity) {
-		this.recievedQuantity = recievedQuantity;
+	public void setReceivedQuantity(Integer receivedQuantity) {
+		this.receivedQuantity = receivedQuantity;
 	}
 
 	public List<ProductDetailDto> getProductDetails() {

@@ -16,7 +16,7 @@ public class ReceiveQuantityValidator implements ConstraintValidator<ReceiveQuan
 
 		ReceiveDto receivedto = (ReceiveDto) value;
 
-		return receivedto.getRecievedQuantity() == receivedto.getProductDetails().size();
+		return receivedto.getReceivedQuantity() == receivedto.getProductDetails().size();
 	}
 
 }

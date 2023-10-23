@@ -34,13 +34,13 @@ public class InventoryService {
 	public Inventory createOrUpdateInventoryRecord(Inventory inventory, ReceiveDto recieveDto, Product product) {
 
 		if (null != inventory) {
-			inventory.setCurrentInventory(inventory.getCurrentInventory() + recieveDto.getRecievedQuantity());
+			inventory.setCurrentInventory(inventory.getCurrentInventory() + recieveDto.getReceivedQuantity());
 			inventory.setLastUpdatedTimestamp(new Timestamp(System.currentTimeMillis()));
 		} else {
 			inventory = new Inventory();
 			inventory.setManufacturer(product.getManufacturer());
 			inventory.setProduct(product);
-			inventory.setCurrentInventory(recieveDto.getRecievedQuantity());
+			inventory.setCurrentInventory(recieveDto.getReceivedQuantity());
 		}
 
 		return inventory;

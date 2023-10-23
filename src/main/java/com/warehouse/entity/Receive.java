@@ -24,8 +24,8 @@ public class Receive {
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 
-	@Column(name = "recieved_quantity")
-	private int recievedQuantity;
+	@Column(name = "received_quantity")
+	private int receivedQuantity;
 
 	@Column(name = "notes")
 	private String notes;
@@ -50,7 +50,7 @@ public class Receive {
 	public Receive(Product product, ReceiveDto recieveDto) {
 		this.manufacturer = product.getManufacturer();
 		this.product = product;
-		this.recievedQuantity = recieveDto.getRecievedQuantity();
+		this.receivedQuantity = recieveDto.getReceivedQuantity();
 		this.createdTimestamp = new Timestamp(System.currentTimeMillis());
 		this.lastUpdatedTimestamp = new Timestamp(System.currentTimeMillis());
 	}
@@ -75,12 +75,12 @@ public class Receive {
 		this.product = product;
 	}
 
-	public int getRecievedQuantity() {
-		return recievedQuantity;
+	public int getReceivedQuantity() {
+		return receivedQuantity;
 	}
 
-	public void setRecievedQuantity(int recievedQuantity) {
-		this.recievedQuantity = recievedQuantity;
+	public void setReceivedQuantity(int receivedQuantity) {
+		this.receivedQuantity = receivedQuantity;
 	}
 
 	public String getNotes() {

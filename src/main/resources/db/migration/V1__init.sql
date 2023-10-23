@@ -34,7 +34,7 @@ CREATE TABLE receive (
 	manufacturer_id INT NOT NULL,
 	product_id INT NOT NULL,
 	carrier varchar(15),
-	recieved_quantity INT NOT NULL,
+	received_quantity INT NOT NULL,
 	created_timestamp timestamp DEFAULT CURRENT_TIMESTAMP,
 	last_updated_timestamp timestamp DEFAULT CURRENT_TIMESTAMP,
 	notes varchar(255),

@@ -16,10 +16,10 @@ public class TestController {
 		return "Only READ_ONLY Can Read This";
 	}
 
-	@GetMapping(value = "/readwright")
-	@Operation(summary = "Test READ_WRIGHT role")
+	@GetMapping(value = "/readwrite")
+	@Operation(summary = "Test READ_WRITE role")
 	public String readWrightPing() {
-		return "Only READ_WRIGHT Can Read This";
+		return "Only READ_WRITE Can Read This";
 	}
 
 }
