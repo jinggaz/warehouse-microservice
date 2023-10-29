@@ -31,16 +31,16 @@ public class InventoryService {
 		return result.stream().map(it -> mapstructMapper.inventoryToInventoryDto(it)).toList();
 	}
 
-	public Inventory createOrUpdateInventoryRecord(Inventory inventory, ReceiveDto recieveDto, Product product) {
+	public Inventory createOrUpdateInventoryRecord(Inventory inventory, ReceiveDto receiveDto, Product product) {
 
 		if (null != inventory) {
-			inventory.setCurrentInventory(inventory.getCurrentInventory() + recieveDto.getReceivedQuantity());
+			inventory.setCurrentInventory(inventory.getCurrentInventory() + receiveDto.getReceivedQuantity());
 			inventory.setLastUpdatedTimestamp(new Timestamp(System.currentTimeMillis()));
 		} else {
 			inventory = new Inventory();
 			inventory.setManufacturer(product.getManufacturer());
 			inventory.setProduct(product);
-			inventory.setCurrentInventory(recieveDto.getReceivedQuantity());
+			inventory.setCurrentInventory(receiveDto.getReceivedQuantity());
 		}
 
 		return inventory;
@@ -54,9 +54,9 @@ public class InventoryService {
 								manufacturerId, productId)));
 	}
 
-	public void saveInventory(Inventory inventory) {
+	public Inventory saveInventory(Inventory inventory) {
 
-		inventoryRepository.save(inventory);
+		return inventoryRepository.save(inventory);
 	}
 
 }

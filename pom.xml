@@ -22,6 +22,7 @@
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<jacoco.version>0.8.8</jacoco.version>
 		<jjwt.version>0.11.5</jjwt.version>
+		<mockito-inline.version>5.2.0</mockito-inline.version>
 		<openpojo.version>0.9.1</openpojo.version>
 	</properties>
 
@@ -107,7 +108,7 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-inline</artifactId>
-			<version>5.2.0</version>
+			<version>${mockito-inline.version}</version>
 			<scope>test</scope>
 		</dependency>
 
