@@ -7,14 +7,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import com.warehouse.exception.QuantityDoesNotMatchException;
-import com.warehouse.exception.ReceiveNotFoundException;
 import com.warehouse.exception.UsernameNotFoundException;
+
+import jakarta.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-	@ExceptionHandler(value = { ReceiveNotFoundException.class })
-	public ResponseEntity<String> receiveNotFoundException(ReceiveNotFoundException ex, WebRequest request) {
+	@ExceptionHandler(value = { ConstraintViolationException.class })
+	public ResponseEntity<String> receiveNotFoundException(ConstraintViolationException ex, WebRequest request) {
 
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
