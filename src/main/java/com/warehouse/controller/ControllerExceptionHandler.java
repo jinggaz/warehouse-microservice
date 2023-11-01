@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-import com.warehouse.exception.QuantityDoesNotMatchException;
+import com.warehouse.exception.ProductNotFoundException;
+import com.warehouse.exception.ReceiveNotFoundException;
 import com.warehouse.exception.UsernameNotFoundException;
 
 import jakarta.validation.ConstraintViolationException;
@@ -20,14 +21,20 @@ public class ControllerExceptionHandler {
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(value = { QuantityDoesNotMatchException.class })
-	public ResponseEntity<String> quantityDoesNotMatchException(QuantityDoesNotMatchException ex, WebRequest request) {
+	@ExceptionHandler(value = { ProductNotFoundException.class })
+	public ResponseEntity<String> quantityDoesNotMatchException(ProductNotFoundException ex, WebRequest request) {
 
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = { UsernameNotFoundException.class })
 	public ResponseEntity<String> usernameNotFoundException(UsernameNotFoundException ex, WebRequest request) {
+
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+	}
+
+	@ExceptionHandler(value = { ReceiveNotFoundException.class })
+	public ResponseEntity<String> receiveNotFoundException(ReceiveNotFoundException ex, WebRequest request) {
 
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
 	}
