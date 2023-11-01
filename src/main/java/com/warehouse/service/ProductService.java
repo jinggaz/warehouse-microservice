@@ -20,7 +20,7 @@ public class ProductService {
 		return productRepository.findByManufacturerIdAndProductId(productId, manufacturerId)
 				.orElseThrow(() -> new ProductNotFoundException(
 						String.format("Product with manufacturerId, %d, and productId, %d, was not found in Product.",
-								productId, manufacturerId)));
+								manufacturerId, productId)));
 	}
 
 }
