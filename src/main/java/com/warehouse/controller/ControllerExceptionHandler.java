@@ -17,7 +17,7 @@ public class ControllerExceptionHandler {
 	@ExceptionHandler(value = { ConstraintViolationException.class })
 	public ResponseEntity<String> receiveNotFoundException(ConstraintViolationException ex, WebRequest request) {
 
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = { QuantityDoesNotMatchException.class })
