@@ -1,6 +1,6 @@
 
 Configuration:
-  status: warn
+  status: debug
 
   properties:
     Property:

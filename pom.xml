@@ -22,7 +22,7 @@
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<jacoco.version>0.8.8</jacoco.version>
 		<jjwt.version>0.11.5</jjwt.version>
-		<disruptor.version>4.0.0</disruptor.version>
+		<disruptor.version>3.4.4</disruptor.version>
 		<mockito-inline.version>5.2.0</mockito-inline.version>
 		<openpojo.version>0.9.1</openpojo.version>
 	</properties>
@@ -109,6 +109,12 @@
 			<groupId>com.lmax</groupId>
 			<artifactId>disruptor</artifactId>
 			<version>${disruptor.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -151,6 +157,10 @@
 					<groupId>org.ow2.asm</groupId>
 					<artifactId>asm</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 	</dependencies>
@@ -176,6 +186,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments>
+						-Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+					</jvmArguments>
+				</configuration>
 			</plugin>
 
 			<plugin>

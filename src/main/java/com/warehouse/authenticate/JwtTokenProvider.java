@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,7 +28,7 @@ public class JwtTokenProvider implements Serializable {
 
 	private static final long serialVersionUID = -1557831613847041092L;
 
-	private static final Logger log = LoggerFactory.getLogger(JwtTokenProvider.class);
+	private static final Logger log = LogManager.getLogger(JwtTokenProvider.class);
 
 	@Value("${app.jwt.expiration-milliseconds}")
 	private long jwtExpirationDate;

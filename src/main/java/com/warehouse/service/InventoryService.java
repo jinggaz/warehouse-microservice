@@ -3,6 +3,8 @@ package com.warehouse.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.warehouse.dto.InventoryDto;
@@ -16,6 +18,8 @@ import com.warehouse.repository.InventoryRepository;
 @Service
 public class InventoryService {
 
+	private static final Logger log = LogManager.getLogger(InventoryService.class);
+
 	private InventoryRepository inventoryRepository;
 	private MapstructMapper mapstructMapper;
 
@@ -25,6 +29,8 @@ public class InventoryService {
 	}
 
 	public List<InventoryDto> getAllInventory() {
+
+		log.info("Get all inventory information through InventoryRepository.");
 
 		final List<Inventory> result = inventoryRepository.findAll();
 

@@ -3,8 +3,8 @@ package com.warehouse.service;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ import com.warehouse.repository.UserRepository;
 @Service
 public class AccountDetailsService implements UserDetailsService {
 
-	private static final Logger log = LoggerFactory.getLogger(AccountDetailsService.class);
+	private static final Logger log = LogManager.getLogger(AccountDetailsService.class);
 
 	private UserRepository userRepository;
 	private RoleService roleService;

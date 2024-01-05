@@ -7,8 +7,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +23,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	private static final Logger log = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+	private static final Logger log = LogManager.getLogger(JwtAuthenticationFilter.class);
 
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
