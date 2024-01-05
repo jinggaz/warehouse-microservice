@@ -22,6 +22,7 @@
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<jacoco.version>0.8.8</jacoco.version>
 		<jjwt.version>0.11.5</jjwt.version>
+		<disruptor.version>4.0.0</disruptor.version>
 		<mockito-inline.version>5.2.0</mockito-inline.version>
 		<openpojo.version>0.9.1</openpojo.version>
 	</properties>
@@ -29,20 +30,30 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>		
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -51,16 +62,16 @@
 
 		<!--   Springdoc Swagger   -->
 		<dependency>
-		    <groupId>org.springdoc</groupId>
-		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${springdoc.version}</version>
 		</dependency>
 
 		<!--	DTO and Entity mapper-->
 		<dependency>
-		    <groupId>org.mapstruct</groupId>
-		    <artifactId>mapstruct</artifactId>
-		    <version>${mapstruct.version}</version>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
 		</dependency>
 
 		<!--   DB migration   -->
@@ -93,6 +104,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!--   Asynchronous Logger   -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>${disruptor.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -104,7 +122,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-inline</artifactId>
@@ -147,9 +165,9 @@
 					<target>${java.version>}</target>
 					<annotationProcessorPaths>
 						<path>
-						    <groupId>org.mapstruct</groupId>
-						    <artifactId>mapstruct-processor</artifactId>
-						    <version>${mapstruct.version}</version>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
@@ -159,10 +177,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
+
 			<plugin>
-			    <groupId>org.flywaydb</groupId>
-			    <artifactId>flyway-maven-plugin</artifactId>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
 			</plugin>
 
 			<plugin>
