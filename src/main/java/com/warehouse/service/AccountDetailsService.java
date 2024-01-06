@@ -47,6 +47,8 @@ public class AccountDetailsService implements UserDetailsService {
 		User user = userRepository.findByName(username)
 				.orElseThrow(() -> new UsernameNotFoundException(String.format("Username, %s, not exist.", username)));
 
+		log.info("User is registered in Warehouse systgem.");
+
 		return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
 				getAuthorities(user));
 	}

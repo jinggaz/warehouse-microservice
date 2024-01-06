@@ -18,18 +18,18 @@ Configuration:
         Pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1} - %msg%n"
 
     RollingRandomAccessFile:
-      - name: LogToRollingRandomAccessFile
-        fileName: ${logpath-location}/${logfile-name}.log
-        filePattern: "${archive}/$${date:yyyy-MM}/${logfile-name}-%d{MM-dd-yyyy}-%i.log.gz"
-        PatternLayout:
-          pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1} - %msg%n"
-        Policies:
-          TimeBasedTriggeringPolicy:
-            interval: 1
-          SizeBasedTriggeringPolicy:
-            size: 10MB
-        DefaultRollOverStrategy:
-          max: 10
+      name: LogToRollingRandomAccessFile
+      fileName: ${logpath-location}/${logfile-name}.log
+      filePattern: ${archive}/${date:yyyy-MM}/${logfile-name}-%d{MM-dd-yyyy}-%i.log.gz
+      PatternLayout:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1} - %msg%n"
+      Policies:
+        TimeBasedTriggeringPolicy:
+          interval: 1
+        SizeBasedTriggeringPolicy:
+          size: 10MB
+      DefaultRollOverStrategy:
+        max: 10
 
   Loggers:
     logger:
@@ -42,7 +42,7 @@ Configuration:
           - ref: LogToRollingRandomAccessFile
 
     Root:
-      level: error
+      level: info
       AppenderRef:
           - ref: LogToConsole
           - ref: LogToRollingRandomAccessFile

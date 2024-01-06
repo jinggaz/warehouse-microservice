@@ -1,5 +1,7 @@
 package com.warehouse.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +25,8 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/account")
 public class AccountController {
 
+	private static final Logger log = LogManager.getLogger(AccountController.class);
+
 	private AuthenticationManager authenticationManager;
 	private AccountDetailsService accountDetailsService;
 	private JwtTokenProvider jwtTokenProvider;
@@ -43,7 +47,9 @@ public class AccountController {
 
 	@PostMapping("/login")
 	@Operation(summary = "Login & get JWT token")
-	public ResponseEntity<AuthToken> generateToken(@RequestBody LoginUser loginUser) throws AuthenticationException {
+	public ResponseEntity<AuthToken> loginToWarehouse(@RequestBody LoginUser loginUser) throws AuthenticationException {
+
+		log.info("Login to Warehouse.");
 
 		final Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));

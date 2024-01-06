@@ -40,6 +40,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
+		log.info("Access authentication filter.");
+
 		String header = request.getHeader(headerString);
 		String username = null;
 		String authToken = null;
@@ -50,14 +52,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			try {
 				username = jwtTokenProvider.getUsernameFromToken(authToken);
 			} catch (IllegalArgumentException e) {
-				log.error("An error occurred while fetching Username from Token", e);
+				log.error("An error occurred while fetching Username from Token.", e);
 			} catch (ExpiredJwtException e) {
 				log.warn("The token has expired", e);
 			} catch (Exception e) {
 				log.error("Authentication Failed. Username or Password not valid.");
 			}
 		} else {
-			log.warn("Couldn't find bearer string, header will be ignored");
+			log.warn("Couldn't find bearer string, header will be ignored.");
 		}
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -71,6 +73,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		}
+
+		log.info("JWT token is valid or first time login.");
 
 		filterChain.doFilter(request, response);
 	}

@@ -67,10 +67,12 @@ public class JwtTokenProvider implements Serializable {
 
 	public String generateToken(Authentication authentication) {
 
-		log.info("Generate JWT token");
+		log.info("Generate JWT token.");
 
 		String authorities = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
 				.collect(Collectors.joining(","));
+
+		log.info("Authentication is successful.");
 
 		return Jwts.builder().setSubject(authentication.getName())
 				.claim(authoritiesKey, authorities)
